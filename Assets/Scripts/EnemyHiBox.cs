@@ -17,7 +17,7 @@ public class EnemyHiBox : MonoBehaviour
     {
         if(enemyHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 

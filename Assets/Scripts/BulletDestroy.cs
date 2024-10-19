@@ -7,6 +7,6 @@ public class BulletDestroy : MonoBehaviour
 {
     void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject, 0.5f);
+        Destroy(this.gameObject);
     }
 }
