@@ -14,7 +14,7 @@ public class gunAim : MonoBehaviour
         float recoilSpeed= 50;
         float recoil = 0.0f;
         public GameObject bullet;
-        public float bulletSpeed = 500000f;
+        public float bulletSpeed = 5000f;
         private AudioSource audioSource;
 
     public LineRenderer lr;
@@ -87,8 +87,9 @@ public class gunAim : MonoBehaviour
         // spawnedBullet.transform.rotation.y = 90;
         Rigidbody bulletRb = spawnedBullet.AddComponent<Rigidbody>();
         bulletRb.useGravity = false;
-        bulletRb.AddForce((target-gunTip.position).normalized * bulletSpeed * Time.unscaledDeltaTime, ForceMode.Force);
+        // bulletRb.AddForce((target-gunTip.position).normalized * bulletSpeed * Time.unscaledDeltaTime, ForceMode.Force);
 
+        bulletRb.velocity  = (target-gunTip.position).normalized * bulletSpeed * Time.unscaledDeltaTime;
 
         Destroy(spawnedBullet, 10f);
     }
