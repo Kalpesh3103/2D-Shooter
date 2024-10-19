@@ -8,7 +8,7 @@ public class EnemyFire : MonoBehaviour
 
     public GameObject gunHolder;
     public GameObject player;
-    public float clampAngle = 45f;
+    public float clampAngle = 35f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,24 +30,23 @@ public class EnemyFire : MonoBehaviour
         {
             enemyRotation.y = 180f;
             gunScale.y = -1f;
-            angle = Mathf.Clamp(angle, -135f + clampAngle, 135f+clampAngle);
+            //angle = Mathf.Clamp(angle, -180f-clampAngle , 180f+clampAngle);
+
         }
         else
         {
             enemyRotation.y = 0f;
             gunScale.y = 1f;
-            angle = Mathf.Clamp(angle, -clampAngle, clampAngle);
+           //angle = Mathf.Clamp(angle, -clampAngle, clampAngle);
 
         }
 
-        this.transform.rotation = Quaternion.Euler(enemyRotation);
+
+        this.gunHolder.transform.eulerAngles = new Vector3(0, 0, angle);
+
+        this.transform.rotation = Quaternion.Euler(transform.rotation.x, enemyRotation.y, transform.rotation.z);
+        
         this.gunHolder.transform.localScale = gunScale;
         
-        //angle = Mathf.Clamp(angle, -45f, 45f);
-        this.gunHolder.transform.eulerAngles = new Vector3(0, 0, angle);
-        
-       
-
-        //transform.rotation = Quaternion.LookRotation(playerDirection, new Vector3(0,0,1));
     }
 }
