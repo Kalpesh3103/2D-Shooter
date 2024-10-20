@@ -141,7 +141,6 @@ public class SlowMotionEffect : MonoBehaviour
         if(remainingDuration > 0)
         {
             remainingDuration -= Time.unscaledDeltaTime;
-            Debug.Log("Decreasing duration : " + remainingDuration);
         }
         if(remainingDuration <= 0)
         {

@@ -119,7 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a99fc7859d9944da76051deaa65ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystem: {fileID: 0}
+  enemyImpactObj: {fileID: 3915450524054260032, guid: 8cc011a88027797439f4fd3e9f12aa42,
+    type: 3}
+  otherImpactobj: {fileID: 553335217640454465, guid: 12bb03a788d251e49a9c37606d1e2614,
+    type: 3}
+  temp: {fileID: 19800002, guid: 76c45a0c0393bd44ba21c689be097959, type: 3}
 --- !u!1 &8665089223904527737
 GameObject:
   m_ObjectHideFlags: 0

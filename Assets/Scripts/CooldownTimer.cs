@@ -12,7 +12,6 @@ public class CooldownTimer : MonoBehaviour
     void Start()
     {
         slowMotionEffect = FindAnyObjectByType<SlowMotionEffect>();
-        Debug.Log("Found slow motion effect" + slowMotionEffect.remainingDuration);
         slider = GetComponent<Slider>();
     }
 

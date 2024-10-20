@@ -16,6 +16,8 @@ public class gunAim : MonoBehaviour
         public GameObject bullet;
         public float bulletSpeed = 5000f;
         private AudioSource audioSource;
+        
+        public GameObject playerBody;
 
     public LineRenderer lr;
     public Transform gunTip;
@@ -48,14 +50,21 @@ public class gunAim : MonoBehaviour
 
 
         Vector3 aimLocalScale = Vector3.one;
+        Vector3 playerRotation = Vector3.zero;
         if (angle > 90 || angle < -90)
         {
+            playerRotation.y = 180f;
             aimLocalScale.y = -1f;
         }
         else
         {
+            playerRotation.y = 0f;
             aimLocalScale.y = +1f;
         }
+
+        playerBody.transform.rotation = Quaternion.Euler(playerBody.transform.rotation.x, playerRotation.y, playerBody.transform.rotation.z);
+
+
         transform.localScale = aimLocalScale;
 
         lr.SetPosition(0, gunTip.position);
