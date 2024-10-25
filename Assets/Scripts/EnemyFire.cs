@@ -10,13 +10,19 @@ public class EnemyFire : MonoBehaviour
     public GameObject player;
     public float clampAngle = 45f;
 
-    // Start is called before the first frame update
+    public float shootDelay = 1.5f;
+    public GameObject bullet;
+    public float bulletSpeed = 5000f;
+    public Transform gunTip;
+    public ParticleSystem muzzleFlash;
+
+    private float shootTimer;
+
     void Start()
     {
-
+        shootTimer = shootDelay;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 playerDirection =  player.transform.position - this.transform.position;
@@ -41,14 +47,43 @@ public class EnemyFire : MonoBehaviour
 
         }
 
-
         this.gunHolder.transform.eulerAngles = new Vector3(0, 0, angle);
 
         this.transform.rotation = Quaternion.Euler(transform.rotation.x, enemyRotation.y, transform.rotation.z);
         
         this.gunHolder.transform.localScale = gunScale;
 
-          
     }
+
+    void FixedUpdate()
+    {
+        // Countdown the timer
+        shootTimer -= Time.deltaTime;
+
+        if (shootTimer <= 0)
+        {
+            Shoot();
+            shootTimer = shootDelay; // Reset the timer after shooting
+        }
+    }
+
+
+    void Shoot()
+    {
+        
+            if(!muzzleFlash.isPlaying) muzzleFlash.Play();
+            Vector3 playerDirection = player.transform.position - this.transform.position;
+
+            GameObject spawnedBullet = Instantiate(bullet, gunTip.position,Quaternion.identity);
+
+            Rigidbody bulletRb = spawnedBullet.AddComponent<Rigidbody>();
+            bulletRb.useGravity = false;
+
+            bulletRb.velocity  = playerDirection.normalized * bulletSpeed * Time.unscaledDeltaTime;
+
+            Destroy(spawnedBullet, 10f);
+
+    }
+
 
 }

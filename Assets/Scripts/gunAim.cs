@@ -16,7 +16,6 @@ public class gunAim : MonoBehaviour
         public GameObject bullet;
         public float bulletSpeed = 5000f;
         private AudioSource audioSource;
-        
         public GameObject playerBody;
 
     public LineRenderer lr;
@@ -107,16 +106,16 @@ public class gunAim : MonoBehaviour
         {
             var maxRecoil = Quaternion.Euler (maxRecoil_x, 0, 0);
             // Dampen towards the target rotation
-            recoilMod.rotation = Quaternion.Slerp(recoilMod.rotation, maxRecoil, Time.deltaTime * recoilSpeed);
+            recoilMod.rotation = Quaternion.Slerp(recoilMod.rotation, maxRecoil, Time.unscaledDeltaTime * recoilSpeed);
             weapon.localEulerAngles = new Vector3(recoilMod.localEulerAngles.x, weapon.localEulerAngles.y, weapon.localEulerAngles.z );
-            recoil -= Time.deltaTime;
+            recoil -= Time.unscaledDeltaTime;
         }
         else
         {
             recoil = 0;
             var minRecoil = Quaternion.Euler (0, 0, 0);
             // Dampen towards the target rotation
-            recoilMod.rotation = Quaternion.Slerp(recoilMod.rotation, minRecoil,Time.deltaTime * recoilSpeed / 2);
+            recoilMod.rotation = Quaternion.Slerp(recoilMod.rotation, minRecoil,Time.unscaledDeltaTime * recoilSpeed / 2);
             weapon.transform.localEulerAngles = new Vector3(recoilMod.localEulerAngles.x, weapon.transform.localEulerAngles.y, weapon.transform.localEulerAngles.z);
         }
     }
