@@ -11,7 +11,7 @@ public class BulletDestroy : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy"  || other.gameObject.tag == "Player")
         {
             //enemyImpact.Play();
             Destroy(Instantiate(enemyImpactObj, other.contacts[0].point, Quaternion.identity), 0.5f);
